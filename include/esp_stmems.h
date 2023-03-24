@@ -9,10 +9,9 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
-#include "driver/gpio.h"
-#include "driver/i2c.h"
-#include "driver/spi_master.h"
+// #include "driver/spi_master.h"
 #include "esp_err.h"
+#include "i2c_bus.h"
 
 /** @defgroup  Endianness definitions
  * @{
@@ -133,11 +132,11 @@ typedef struct {
 
 #endif /* MEMS_UCF_SHARED_TYPES */
 
-typedef stmdev_ctx_t esp_stmems_handle_t;
+typedef void* esp_stmems_handle_t;
 
-esp_err_t esp_stmems_new_i2c_device(i2c_port_t i2c_num, uint8_t i2c_address, esp_stmems_handle_t* handle);
+esp_stmems_handle_t esp_stmems_new_i2c_device(i2c_bus_handle_t bus_handle, uint8_t dev_addr, uint32_t clk_speed);
 
-esp_err_t esp_stmems_new_spi_device(spi_host_device_t host_id, const spi_device_interface_config_t* dev_config, esp_stmems_handle_t* handle);
+// esp_err_t esp_stmems_new_spi_device(spi_host_device_t host_id, const spi_device_interface_config_t* dev_config, esp_stmems_handle_t* handle);
 
 #ifdef __cplusplus
 }
